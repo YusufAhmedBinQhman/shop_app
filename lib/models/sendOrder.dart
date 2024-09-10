@@ -1,5 +1,4 @@
 class sendTime {
-
-    late String name, value;
+  late String name, value;
   sendTime({required this.name, required this.value});
 }

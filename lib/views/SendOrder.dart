@@ -23,6 +23,7 @@ class _SendOrderState extends State<SendOrder> {
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height,
           child: Form(
             key: frmky,
@@ -31,10 +32,13 @@ class _SendOrderState extends State<SendOrder> {
                 SizedBox(height: 20),
                 TextFormField(
                   keyboardType: TextInputType.name,
-                  validator: (x) => checkValidate(x),
+                  validator: (x) => checkValidName(x),
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.account_box),
-                    hintText: "Enter Your Name",
+                    labelText: "Receve name:",
+                    labelStyle: TextStyle(fontSize: 18),
+                    hintText: "Enter Receve Name",
+                    hintStyle: TextStyle(fontSize: 18),
                     // enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all())
                   ),
                 ),
@@ -42,26 +46,35 @@ class _SendOrderState extends State<SendOrder> {
                 TextFormField(
                   validator: (x) => checkValidPhone(x),
                   keyboardType: TextInputType.phone,
+                  maxLength: 9,
                   decoration: InputDecoration(
                     prefixIcon: Icon(Icons.account_box),
+                    labelText: "Receve Phone Number:",
+                    labelStyle: TextStyle(fontSize: 18),
                     hintText: "example: 777111333",
+                    hintStyle: TextStyle(fontSize: 18),
                     //  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all())
                   ),
                 ),
                 SizedBox(height: 20),
-                // DropdownButton(
-                //     items: sendOrderVM
-                //         .loadTime()
-                //         .map((t) => DropdownMenuItem(child: Text(t.name)))
-                //         .toList(),
-                //     onChanged: (x) {
-                //       selectTime = x;
-                //     }),
+                DropdownButton(
+                    hint: Text("وقت الارسال"),
+                    value: selectTime,
+                    items: sendOrderVM
+                        .loadTime()
+                        .map((t) => DropdownMenuItem(
+                              child: Text(t.name),
+                              value: t.value,
+                            ))
+                        .toList(),
+                    onChanged: (x) {
+                      selectTime = x;
+                      setState(() {});
+                    }),
                 Text(
                   "طريقة الدفع",
                   style: TextStyle(fontSize: 20),
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -104,12 +117,21 @@ class _SendOrderState extends State<SendOrder> {
                     SizedBox(width: 40)
                   ],
                 ),
-                TextField(),
+                TextField(
+                  textAlign: TextAlign.right,
+                  maxLines: 10,
+                  minLines: 5,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "...ملاحظات",
+                      hintStyle: TextStyle(fontSize: 20)),
+                ),
                 MaterialButton(
+                    color: Colors.blue,
                     child: Text("Save"),
                     onPressed: () {
                       if (frmky.currentState!.validate()) {
-                        frmky.currentState!.save();
+                        return null;
                       }
                     }),
               ],
@@ -120,23 +142,21 @@ class _SendOrderState extends State<SendOrder> {
     ));
   }
 
-  checkValidate(String? x) {
+  checkValidName(String? x) {
     List<String> lenWord = x!.split(" ");
     if ((x.isEmpty || lenWord.length < 3)) {
-      return Text(
-          "Please Enter correct name.. Your name must be least 3 word ");
+      return "Your name must be least 3 word ";
     } else
       return null;
   }
 
   checkValidPhone(String? x) {
-    if ((x!.isEmpty ||
-        x.length < 10 ||
-        x != x.startsWith("71") ||
-        x != x.startsWith("77") ||
-        x != x.startsWith("78"))) {
-      return Text(
-          "Please Enter correct Phone Number.. Your Phone must be begin (77 Or 78 Or 71) ");
+    if ((x!.isEmpty || x.length != 9)) {
+      return "Please Enter correct Phone Number (9 Digit)..";
+    } else if (!x.startsWith("71") &&
+        !x.startsWith("77") &&
+        !x.startsWith("73")) {
+      return " Your Phone must be begin (77 Or 78 Or 71) ";
     } else
       return null;
   }
