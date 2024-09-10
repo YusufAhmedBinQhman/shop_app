@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app1/views/LoginScreen.dart';
-import 'package:shop_app1/views/cart_screen.dart';
-import 'package:shop_app1/views/details_screen.dart';
-import 'package:shop_app1/views/home_screen.dart';
-import 'package:shop_app1/views/splashScreen.dart';
+import 'package:shop_app1/utils/app_routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,15 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: false),
-      // home: HomeScreen(),
-      routes: {
-        "/home": (ctx) => HomeScreen(),
-        "/details": (ctx) => DetailsScreen(),
-        "/cart": (ctx) => CartScreen(),
-        "/splash": (ctx) => SplashScreen(),
-        "/login": (ctx) => LoginScreen(),
-      },
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          useMaterial3: false,
+          appBarTheme: AppBarTheme(color: Color.fromRGBO(8, 68, 135, 1))),
+            initialRoute: "/sendorder",
+            onGenerateRoute: AppRoutes.routeManager,
     );
   }
 }
