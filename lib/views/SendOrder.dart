@@ -1,3 +1,4 @@
+import 'package:shop_app1/viewmodels/products_vm.dart';
 import 'package:shop_app1/viewmodels/sendOrderVM.dart';
 import 'package:flutter/material.dart';
 
@@ -28,37 +29,46 @@ class _SendOrderState extends State<SendOrder> {
           child: Form(
             key: frmky,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(height: 20),
                 TextFormField(
+                  textAlign: TextAlign.right,
                   keyboardType: TextInputType.name,
                   validator: (x) => checkValidName(x),
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.account_box),
-                    labelText: "Receve name:",
-                    labelStyle: TextStyle(fontSize: 18),
-                    hintText: "Enter Receve Name",
-                    hintStyle: TextStyle(fontSize: 18),
-                    // enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all())
-                  ),
+                      suffixIcon: Icon(Icons.account_box),
+                      labelText: ":اسم المستلم",
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: ":اكتب اسم المستلم",
+                      hintStyle: TextStyle(fontSize: 18),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50))),
                 ),
                 SizedBox(height: 20),
                 TextFormField(
+                  textAlign: TextAlign.right,
                   validator: (x) => checkValidPhone(x),
                   keyboardType: TextInputType.phone,
                   maxLength: 9,
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.account_box),
-                    labelText: "Receve Phone Number:",
-                    labelStyle: TextStyle(fontSize: 18),
-                    hintText: "example: 777111333",
-                    hintStyle: TextStyle(fontSize: 18),
-                    //  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all())
-                  ),
+                      prefixIcon: Icon(Icons.account_box),
+                      labelText: ":رقم هاتف المستلم",
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: "مثال: 777111222",
+                      hintStyle: TextStyle(fontSize: 18),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(50))),
                 ),
                 SizedBox(height: 20),
                 DropdownButton(
-                    hint: Text("وقت الارسال"),
+                    borderRadius: BorderRadius.circular(20),
+                    dropdownColor: Color.fromARGB(213, 86, 177, 251),
+                    alignment: Alignment.center,
+                    hint: Text(
+                      "وقت الارسال",
+                      style: TextStyle(fontSize: 18),
+                    ),
                     value: selectTime,
                     items: sendOrderVM
                         .loadTime()
@@ -71,9 +81,10 @@ class _SendOrderState extends State<SendOrder> {
                       selectTime = x;
                       setState(() {});
                     }),
+                SizedBox(height: 20),
                 Text(
-                  "طريقة الدفع",
-                  style: TextStyle(fontSize: 20),
+                  ":طريقة الدفع",
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -128,10 +139,12 @@ class _SendOrderState extends State<SendOrder> {
                 ),
                 MaterialButton(
                     color: Colors.blue,
-                    child: Text("Save"),
+                    child: Text("Save",
+                        style: TextStyle(fontSize: 18, color: Colors.white)),
                     onPressed: () {
                       if (frmky.currentState!.validate()) {
-                        return null;
+                        Navigator.pushNamed(context, "/sucOrder",
+                            arguments: ProductsVM.cartItems);
                       }
                     }),
               ],

@@ -2,6 +2,7 @@ import 'package:shop_app1/models/product.dart';
 import 'package:shop_app1/views/FavoriteScreen.dart';
 import 'package:shop_app1/views/LoginScreen.dart';
 import 'package:shop_app1/views/SendOrder.dart';
+import 'package:shop_app1/views/SucceedOrder.dart';
 import 'package:shop_app1/views/cart_screen.dart';
 import 'package:shop_app1/views/demo.dart';
 import 'package:shop_app1/views/details_screen.dart';
@@ -45,6 +46,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (ctx) => signup());
       case '/sendorder':
         return MaterialPageRoute(builder: (ctx) => SendOrder());
+      case '/sucOrder':
+        return MaterialPageRoute(builder: (ctx) => SucceedOrder());
 
       default:
         return MaterialPageRoute(builder: (ctx) => NotFoundScreen());

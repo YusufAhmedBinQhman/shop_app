@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: false,
           appBarTheme: AppBarTheme(color: Color.fromRGBO(8, 68, 135, 1))),
-            initialRoute: "/sendorder",
-            onGenerateRoute: AppRoutes.routeManager,
+      initialRoute: "/sendorder",
+      onGenerateRoute: AppRoutes.routeManager,
     );
   }
 }
