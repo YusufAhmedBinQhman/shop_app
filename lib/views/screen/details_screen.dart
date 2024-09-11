@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app1/models/product.dart';
 import 'package:shop_app1/viewmodels/products_vm.dart';
-import 'package:shop_app1/views/cart_screen.dart';
+import 'package:shop_app1/views/screen/cart_screen.dart';
 
 class DetailsScreen extends StatefulWidget {
   late Product p;

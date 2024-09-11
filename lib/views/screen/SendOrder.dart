@@ -1,6 +1,7 @@
 import 'package:shop_app1/viewmodels/products_vm.dart';
 import 'package:shop_app1/viewmodels/sendOrderVM.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app1/views/widget/text_form.dart';
 
 class SendOrder extends StatefulWidget {
   const SendOrder({super.key});
@@ -14,7 +15,6 @@ class _SendOrderState extends State<SendOrder> {
   String? selectTime;
   String? payment = "عند الاستلام";
   SendOrderVM sendOrderVM = SendOrderVM();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -33,33 +33,21 @@ class _SendOrderState extends State<SendOrder> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(height: 20),
-                TextFormField(
-                  textAlign: TextAlign.right,
-                  keyboardType: TextInputType.name,
-                  validator: (x) => checkValidName(x),
-                  decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.account_box),
-                      labelText: ":اسم المستلم",
-                      labelStyle: TextStyle(fontSize: 18),
-                      hintText: ":اكتب اسم المستلم",
-                      hintStyle: TextStyle(fontSize: 18),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50))),
+                TextForm(
+                  sufIcon: Icon(Icons.account_box),
+                  KeyBType: TextInputType.name,
+                  validateInput: (x) => checkValidName(x),
+                  labelText: ":اسم المستلم",
+                  hintText: ":اكتب اسم المستلم",
                 ),
                 SizedBox(height: 20),
-                TextFormField(
-                  textAlign: TextAlign.right,
-                  validator: (x) => checkValidPhone(x),
-                  keyboardType: TextInputType.phone,
-                  maxLength: 9,
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_box),
-                      labelText: ":رقم هاتف المستلم",
-                      labelStyle: TextStyle(fontSize: 18),
-                      hintText: "مثال: 777111222",
-                      hintStyle: TextStyle(fontSize: 18),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50))),
+                TextForm(
+                  validateInput: (x) => checkValidPhone(x),
+                  KeyBType: TextInputType.phone,
+                  maxLen: 9,
+                  sufIcon: Icon(Icons.account_box),
+                  labelText: ":رقم هاتف المستلم",
+                  hintText: "مثال: 777111222",
                 ),
                 SizedBox(height: 20),
                 DropdownButton(
