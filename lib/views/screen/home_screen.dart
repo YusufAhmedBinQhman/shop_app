@@ -2,6 +2,7 @@ import 'package:shop_app1/models/product.dart';
 import 'package:shop_app1/viewmodels/cart_vm.dart';
 import 'package:shop_app1/viewmodels/products_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app1/views/widget/txtStyWid.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
               margin: EdgeInsets.only(top: 10, right: 10),
             ),
           ],
-          title: Text("Home Screen"),
+          title:TxtStyWid(text: "Home Screen"),
         ),
         body: ListView.builder(
             itemCount: allProducts.length,

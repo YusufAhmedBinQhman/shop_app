@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextForm extends StatelessWidget {
-  TextForm(
+class TextFormW extends StatelessWidget {
+  TextFormW(
       {super.key,
       this.labelText,
       this.hintText,

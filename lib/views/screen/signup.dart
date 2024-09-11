@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:shop_app1/views/widget/txtStyWid.dart';
 
 class signup extends StatefulWidget {
   const signup({super.key});
@@ -31,7 +32,6 @@ class _signupState extends State<signup> {
                       context: context,
                       builder: (ctx) {
                         return AlertDialog(
-                          
                             content: SizedBox(
                                 width: 200,
                                 child: Row(
@@ -111,7 +111,7 @@ class _signupState extends State<signup> {
                         gender = x;
                         setState(() {});
                       }),
-                  Text("male"),
+                  TxtStyWid(text: "male"),
                   Radio(
                       value: "FeMale",
                       groupValue: gender,
@@ -119,7 +119,7 @@ class _signupState extends State<signup> {
                         gender = x;
                         setState(() {});
                       }),
-                  Text("FeMale"),
+                  TxtStyWid(text: "FeMale"),
                 ],
               ),
               Row(
@@ -130,7 +130,7 @@ class _signupState extends State<signup> {
                         isAccept = x!;
                         setState(() {});
                       }),
-                  Text("Accept "),
+                  TxtStyWid(text: "Accept"),
                 ],
               ),
               Row(
@@ -141,7 +141,7 @@ class _signupState extends State<signup> {
                         isAgree = x!;
                         setState(() {});
                       }),
-                  Text("I read and I Agree... "),
+                  TxtStyWid(text: "I read and I Agree... "),
                 ],
               ),
             ]),

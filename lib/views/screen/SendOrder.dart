@@ -1,7 +1,9 @@
 import 'package:shop_app1/viewmodels/products_vm.dart';
 import 'package:shop_app1/viewmodels/sendOrderVM.dart';
 import 'package:flutter/material.dart';
+import 'package:shop_app1/views/widget/AppButton.dart';
 import 'package:shop_app1/views/widget/text_form.dart';
+import 'package:shop_app1/views/widget/txtStyWid.dart';
 
 class SendOrder extends StatefulWidget {
   const SendOrder({super.key});
@@ -21,7 +23,7 @@ class _SendOrderState extends State<SendOrder> {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text("Send Order"),
+        title: TxtStyWid(text: "Send Order"),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -33,7 +35,7 @@ class _SendOrderState extends State<SendOrder> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(height: 20),
-                TextForm(
+                TextFormW(
                   sufIcon: Icon(Icons.account_box),
                   KeyBType: TextInputType.name,
                   validateInput: (x) => checkValidName(x),
@@ -41,7 +43,7 @@ class _SendOrderState extends State<SendOrder> {
                   hintText: ":اكتب اسم المستلم",
                 ),
                 SizedBox(height: 20),
-                TextForm(
+                TextFormW(
                   validateInput: (x) => checkValidPhone(x),
                   KeyBType: TextInputType.phone,
                   maxLen: 9,
@@ -54,10 +56,7 @@ class _SendOrderState extends State<SendOrder> {
                     borderRadius: BorderRadius.circular(20),
                     dropdownColor: Color.fromARGB(213, 86, 177, 251),
                     alignment: Alignment.center,
-                    hint: Text(
-                      "وقت الارسال",
-                      style: TextStyle(fontSize: 18),
-                    ),
+                    hint: TxtStyWid(text: "وقت الارسال"),
                     value: selectTime,
                     items: sendOrderVM
                         .loadTime()
@@ -78,7 +77,7 @@ class _SendOrderState extends State<SendOrder> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("عند الاستلام", style: TextStyle(fontSize: 20)),
+                    TxtStyWid(text: "عند الاستلام"),
                     Radio(
                         value: "عند الاستلام",
                         groupValue: payment,
@@ -92,7 +91,7 @@ class _SendOrderState extends State<SendOrder> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("الكريمي", style: TextStyle(fontSize: 20)),
+                    TxtStyWid(text: "الكريمي"),
                     Radio(
                         value: "الكريمي",
                         groupValue: payment,
@@ -106,7 +105,7 @@ class _SendOrderState extends State<SendOrder> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text("العمقي", style: TextStyle(fontSize: 20)),
+                    TxtStyWid(text: "العمقي"),
                     Radio(
                         value: "العمقي",
                         groupValue: payment,
@@ -126,16 +125,14 @@ class _SendOrderState extends State<SendOrder> {
                       hintText: "...ملاحظات",
                       hintStyle: TextStyle(fontSize: 20)),
                 ),
-                MaterialButton(
-                    color: Colors.blue,
-                    child: Text("Save",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
-                    onPressed: () {
+                AppButton(
+                    text: "Save",
+                    event: () {
                       if (frmky.currentState!.validate()) {
                         Navigator.pushNamed(context, "/sucOrder",
                             arguments: ProductsVM.cartItems);
                       }
-                    }),
+                    })
               ],
             ),
           ),

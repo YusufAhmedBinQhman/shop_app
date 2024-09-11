@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app1/models/product.dart';
+import 'package:shop_app1/views/widget/txtStyWid.dart';
 
 class FavoritesScreen extends StatelessWidget {
   final List<Product> favoriteProducts;
@@ -10,7 +11,7 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favorite Products'),
+        title: TxtStyWid(text: "Favorite Products"),
       ),
       body: ListView.builder(
         itemCount: favoriteProducts.length,
